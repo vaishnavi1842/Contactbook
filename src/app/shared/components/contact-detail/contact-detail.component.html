@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <h2 *ngIf="!isEditing">{{ contact?.name }}</h2>
+    <div *ngIf="isEditing">
+      <h3>Edit Contact</h3>
+    </div>
+  
+    <div class="card" *ngIf="contact">
+      <div class="card-body">
+        <div *ngIf="!isEditing">
+          <p><strong>Email:</strong> {{ contact.email }}</p>
+          <p><strong>Phone:</strong> {{ contact.phone }}</p>
+          <p><strong>Address:</strong> {{ contact.address }}</p>
+        </div>
+  
+        <div *ngIf="isEditing">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="editedContact.name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="editedContact.email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" [(ngModel)]="editedContact.phone">
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" [(ngModel)]="editedContact.address">
+          </div>
+        </div>
+  
+        <button *ngIf="!isEditing" class="btn btn-primary" (click)="startEditing()">Edit</button>
+        <button *ngIf="isEditing" class="btn btn-success" (click)="saveChanges()">Save</button>
+        <button *ngIf="isEditing" class="btn btn-danger" (click)="cancelEditing()">Cancel</button>
+        <button *ngIf="!isEditing" class="btn btn-danger" (click)="deleteContact()">Delete</button>
+      </div>
+    </div>
+  </div>
+  
